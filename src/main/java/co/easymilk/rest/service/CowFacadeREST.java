@@ -41,19 +41,21 @@ public class CowFacadeREST extends AbstractFacade<Cow> {
     @POST
     public Response add(Cow entity) {
         super.create(entity);
-        return Response.ok().entity("La vaca se registro exitosamente").build();
+        return Response.ok().entity("La vaca se registró exitosamente").build();
     }
 
     @PUT
     @Path("{id}")
-    public void edit(@PathParam("id") Integer id, Cow entity) {
+    public Response edit(@PathParam("id") Integer id, Cow entity) {
         super.edit(entity);
+        return Response.ok().entity("La vaca se editó exitosamente").build();
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
+    public Response remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
+        return Response.ok().entity("La vaca se eliminó exitosamente").build();
     }
 
     @GET
@@ -85,5 +87,5 @@ public class CowFacadeREST extends AbstractFacade<Cow> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }
